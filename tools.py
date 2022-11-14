@@ -67,8 +67,6 @@ def gen_face_mask(data_root):
             os.makedirs(folder_save)
 
       for k in tqdm(range(img_num)):
-            if k != 18290:
-                  continue
             folder_num = k // 2000
             im_base = np.zeros((512, 512))
             for idx, label in enumerate(label_list):
@@ -184,14 +182,14 @@ def gen_face_mask_color(data_root):
       
       folder_base = data_root + 'celebahq_mask_mask'
       folder_save = data_root + 'celebahq_mask_color'
-      img_num = 1
+      img_num = 30000
 
       if not os.path.exists(folder_save):
             os.makedirs(folder_save)
 
       for k in tqdm(range(img_num)):
-            # filename = os.path.join(folder_base, str(k) + '.png')
-            filename = 'debug_2.png'
+            filename = os.path.join(folder_base, str(k) + '.png')
+            # filename = 'debug_2.png'
             if (os.path.exists(filename)):
                   im_base = np.zeros((512, 512, 3))
                   im = Image.open(filename)
