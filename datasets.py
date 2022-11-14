@@ -469,8 +469,10 @@ class CelebAMaskHQ_wo_background_seg_18(Dataset):
     3. 去掉了interpolation=0
     """
     def __init__(self, dataset_path, img_size, background_mask, return_label=True, **kwargs):
-        img_base = 'celebahq_mask_img/*.jpg'
-        label_base = 'celebahq_mask_mask/*.png'
+        print("Init CelebAMaskHQ_wo_background_seg_18 dataset")
+        
+        img_base = '/workspace/CelebAMask-HQ/celebahq_mask_img/*.jpg'
+        label_base = '/workspace/CelebAMask-HQ/celebahq_mask_mask/*.png'
         self.img_path = os.path.join(dataset_path, img_base)
         self.label_path = os.path.join(dataset_path,  label_base)
         self.transform_image = transforms.Compose(
@@ -490,6 +492,7 @@ class CelebAMaskHQ_wo_background_seg_18(Dataset):
         self.data_label = sorted(glob.glob(self.label_path))
         self.background_mask = background_mask
         self.return_label = return_label
+        print(f"celebahq_mask_img length: {len(self.data_img)}, celebahq_mask_mask: {len(self.data_label)}")
         assert len(self.data_img) == len(self.data_label)
         
         self.color_map = {
